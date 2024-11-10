@@ -126,16 +126,23 @@ tokio-native-tls = { version = "0.3.0", optional = true }
 hyper-rustls = { git = "https://github.com/wasix-org/hyper-rustls.git", branch="v0.25.0" ,default-features = false, optional = true }
 
 #rustls = { git = "https://github.com/wasix-org/rustls.git", branch = "v0.21.8", features = ["dangerous_configuration"], optional = true }
-rustls = { git = "https://github.com/wasix-org/rustls.git", branch = "v0.22.2", optional = true }
+rustls = { version = "0.22.2", git = "https://github.com/wasix-org/rustls.git", branch = "v0.22.2", default-features = false, features = [
+    "tls12",
+] }
 
 #tokio-rustls = { version = "0.24", optional = true }
-tokio-rustls = { version = "0.25.0", optional = true }
+tokio-rustls = { git = "https://github.com/wasix-org/tokio-rustls.git", branch = "0.25.0", version = "0.25.0", default-features = false }
 
-webpki-roots = { git = "https://github.com/wasix-org/webpki-roots.git", branch = "v0.24.0", optional = true }
+#webpki-roots = { git = "https://github.com/wasix-org/webpki-roots.git", branch = "v0.24.0", optional = true }
+webpki-roots = { git = "https://github.com/wasix-org/webpki-roots.git", branch = "v0.25.2", version = "0.25.2", optional = true }
 
 
-rustls-native-certs = { version = "0.6", optional = true }
-rustls-pemfile = { version = "1.0", optional = true }
+#rustls-native-certs = { version = "0.6", optional = true }
+rustls-native-certs = { version = "0.6", git = "https://github.com/wasix-org/rustls-native-certs.git", branch = "main", optional = true }
+
+#rustls-pemfile = { version = "1.0", optional = true }
+rustls-pemfile = { version = "2", optional = true }
+
 
 ## cookies
 cookie_crate = { version = "0.16", package = "cookie", optional = true }
@@ -161,14 +168,21 @@ futures-channel = { version="0.3", optional = true}
 [target.'cfg(not(all(target_arch = "wasm32", target_os = "unknown")))'.dev-dependencies]
 env_logger = "0.8"
 #hyper = { git = "https://github.com/wasix-org/hyper.git", branch = "v0.14.27", default-features = false, features = ["tcp", "stream", "http1", "http2", "client", "server", "runtime"] }
-hyper = { git = "https://github.com/wasix-org/hyper.git", branch = "v0.14.28", default-features = false, features = ["tcp", "http1", "http2", "client", "runtime"] }
+hyper = { version = "0.14", git = "https://github.com/wasix-org/hyper.git", branch = "v0.14.28", default-features = false, features = [
+    "full",
+] }
 serde = { version = "1.0", features = ["derive"] }
 libflate = "1.0"
 brotli_crate = { package = "brotli", version = "3.3.0" }
 doc-comment = "0.3"
 #tokio = { git = "https://github.com/wasix-org/tokio.git", branch = "epoll", default-features = false, features = ["macros", "rt-multi-thread"] }
-tokio = { version = "=1.35.1", git = "https://github.com/wasix-org/tokio.git", branch = "wasix-1.35.1" }
-
+tokio = { version = "=1.35.1", git = "https://github.com/wasix-org/tokio.git", branch = "wasix-1.35.1", features = [
+    "io-std",
+    "fs",
+    "macros",
+    "net",
+    "rt-multi-thread",
+] }
 [target.'cfg(windows)'.dependencies]
 winreg = "0.50.0"
 
