@@ -112,7 +112,10 @@ log = "0.4"
 mime = "0.3.16"
 percent-encoding = "2.1"
 #tokio = { git = "https://github.com/wasix-org/tokio.git", branch = "epoll", default-features = false, features = ["net", "time"] }
-tokio = { version = "=1.35.1", git = "https://github.com/wasix-org/tokio.git",default-features = false, branch = "wasix-1.35.1" }
+tokio = { version = "=1.35.1", git = "https://github.com/wasix-org/tokio.git", branch = "wasix-1.35.1", features = [
+    "net",
+    "time",
+] }
 
 pin-project-lite = "0.2.0"
 ipnet = "2.3"
